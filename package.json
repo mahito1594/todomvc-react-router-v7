@@ -1,6 +1,9 @@
 {
   "name": "todomvc-react-router-v7",
+  "description": "A TodoMVC written in React Router (v7)",
   "private": true,
+  "license": "MIT",
+  "author": "Mahito TANNO",
   "type": "module",
   "scripts": {
     "build": "react-router build",
