@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -40,6 +41,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
+
+// TODO:  Add HydrateFallback
+// To provide a better loading UI, we should export HydrateFallback function.  See
+// https://reactrouter.com/how-to/spa#2-add-a-hydratefallback-and-optional-loader-to-your-root-route
 
 export default function App() {
   return <Outlet />;
