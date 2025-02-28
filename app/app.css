@@ -1,15 +1,28 @@
-@import "tailwindcss";
+/* This file is copied from
+   https://github.com/tastejs/todomvc/tree/master/examples/react
+   which is licensed under the MIT license */
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+/* used for things that should be hidden in the ui,
+but useful for people who use screen readers */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
 }
 
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
+.toggle-all {
+  width: 40px !important;
+  height: 60px !important;
+  right: auto !important;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+.toggle-all-label {
+  pointer-events: none;
 }
