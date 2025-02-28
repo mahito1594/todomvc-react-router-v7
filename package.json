@@ -8,7 +8,6 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
     "check:type": "react-router typegen && tsc",
     "check:biome": "biome check",
     "check:biome:fix": "biome check --write"
