@@ -36,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="learn-bar">
+      <body>
         <section className="todoapp">{children}</section>
         <footer className="info">
           <p>Double-click to edit a todo</p>
