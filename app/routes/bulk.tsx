@@ -25,16 +25,16 @@ export const clientAction = async ({ request }: Route.ClientActionArgs) => {
 
 const destroyActionHandler = async (payload: unknown) => {
   const { todos } = validateTodoBulkDestroyData(payload);
-  const tasks = todos.map((todo) => todoRepository.destroy(todo.id));
-  await Promise.all(tasks);
+  for (const todo of todos) {
+    await todoRepository.destroy(todo.id);
+  }
   return redirect("/");
 };
 
 const updateActionHandler = async (payload: unknown) => {
   const { todos } = validateTodoBulkUpdateData(payload);
-  const tasks = todos.map((todo) =>
-    todoRepository.update(todo.id, todo.title, todo.completed),
-  );
-  await Promise.all(tasks);
+  for (const todo of todos) {
+    await todoRepository.update(todo.id, todo.title, todo.completed);
+  }
   return redirect("/");
 };
