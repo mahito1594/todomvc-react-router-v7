@@ -1,5 +1,4 @@
-import { NavLink, useSearchParams } from "react-router";
-import { NavLlink, useFetcher, useSearchParams } from "react-router";
+import { useFetcher, useSearchParams } from "react-router";
 
 export type FooterProps = {
   todos: { id: number; completed: boolean }[];
@@ -34,31 +33,31 @@ export default function Footer({ todos }: FooterProps) {
       </span>
       <ul className="filters">
         <li>
-          <NavLink
-            to={{ pathname: "/", search: "?filter=all" }}
+          <button
+            type="button"
             className={filterMode === "all" ? "selected" : ""}
-            end
+            onClick={() => setSearchParams({ filter: "all" })}
           >
             All
-          </NavLink>
+          </button>
         </li>
         <li>
-          <NavLink
-            to={{ pathname: "/", search: "?filter=active" }}
+          <button
+            type="button"
             className={filterMode === "active" ? "selected" : ""}
-            end
+            onClick={() => setSearchParams({ filter: "active" })}
           >
             Active
-          </NavLink>
+          </button>
         </li>
         <li>
-          <NavLink
-            to={{ pathname: "/", search: "?filter=completed" }}
+          <button
+            type="button"
             className={filterMode === "completed" ? "selected" : ""}
-            end
+            onClick={() => setSearchParams({ filter: "completed" })}
           >
             Completed
-          </NavLink>
+          </button>
         </li>
       </ul>
       {completedTodos.length > 0 && (

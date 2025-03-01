@@ -32,6 +32,26 @@
   text-decoration: line-through;
 }
 
+ul.filters li button {
+  box-sizing: content-box;
+  display: inline;
+  cursor: pointer;
+  color: inherit;
+  margin: -3px 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+ul.filters li button:hover {
+  border-color: #db7676;
+}
+
+ul.filters li button.selected {
+  border-color: #ce4646;
+}
+
 /* used for things that should be hidden in the ui,
 but useful for people who use screen readers */
 .visually-hidden {
