@@ -1,4 +1,4 @@
-import { data } from "react-router";
+import { data, redirect } from "react-router";
 import { todoRepository } from "~/data/todoRepository.client";
 import { validateTodoData } from "~/data/validate.client";
 import type { Route } from "./+types/$id";
@@ -8,6 +8,11 @@ export const clientAction = async ({
   request,
 }: Route.ClientActionArgs) => {
   const todoId = Number.parseInt(params.id, 10);
+
+  if (request.method === "DELETE") {
+    await todoRepository.destroy(todoId);
+    return redirect("/");
+  }
 
   if (request.method === "PUT") {
     const formData = await request.formData();
