@@ -1,6 +1,9 @@
 import { data, redirect } from "react-router";
 import { todoRepository } from "~/data/todoRepository.client";
-import { validateTodoBulkUpdateData } from "~/data/validate.client";
+import {
+  validateTodoBulkDestroyData,
+  validateTodoBulkUpdateData,
+} from "~/data/validate.client";
 import type { Route } from "./+types/bulk";
 
 export const clientAction = async ({ request }: Route.ClientActionArgs) => {
@@ -11,6 +14,8 @@ export const clientAction = async ({ request }: Route.ClientActionArgs) => {
   const payload = await request.json();
 
   switch (payload?.mode) {
+    case "destroy":
+      return destroyActionHandler(payload);
     case "update":
       return updateActionHandler(payload);
     default:
@@ -18,8 +23,11 @@ export const clientAction = async ({ request }: Route.ClientActionArgs) => {
   }
 };
 
-const destroyActionHandler = async (_formData: FormData) => {
-  console.log("TODO: implement destroyActionHandler");
+const destroyActionHandler = async (payload: unknown) => {
+  const { todos } = validateTodoBulkDestroyData(payload);
+  const tasks = todos.map((todo) => todoRepository.destroy(todo.id));
+  await Promise.all(tasks);
+  return redirect("/");
 };
 
 const updateActionHandler = async (payload: unknown) => {

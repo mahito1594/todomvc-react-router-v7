@@ -1,7 +1,8 @@
 import { NavLink, useSearchParams } from "react-router";
+import { NavLlink, useFetcher, useSearchParams } from "react-router";
 
 export type FooterProps = {
-  todos: { completed: boolean }[];
+  todos: { id: number; completed: boolean }[];
 };
 
 export default function Footer({ todos }: FooterProps) {
@@ -10,8 +11,20 @@ export default function Footer({ todos }: FooterProps) {
   }
 
   const activeTodos = todos.filter((todo) => !todo.completed);
+  const completedTodos = todos.filter((todo) => todo.completed);
 
-  const [searchParams] = useSearchParams();
+  const fetcher = useFetcher();
+  const clearCompleted = () => {
+    fetcher.submit(
+      {
+        mode: "destroy",
+        todos: completedTodos.map((todo) => ({ id: todo.id })),
+      },
+      { action: "/bulk", method: "POST", encType: "application/json" },
+    );
+  };
+
+  const [searchParams, setSearchParams] = useSearchParams();
   const filterMode = searchParams.get("filter") || "all";
 
   return (
@@ -48,6 +61,15 @@ export default function Footer({ todos }: FooterProps) {
           </NavLink>
         </li>
       </ul>
+      {completedTodos.length > 0 && (
+        <button
+          type="button"
+          className="clear-completed"
+          onClick={clearCompleted}
+        >
+          Clear completed
+        </button>
+      )}
     </footer>
   );
 }

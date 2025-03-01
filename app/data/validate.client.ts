@@ -26,3 +26,11 @@ const TodoBulkUpdateSchema = v.object({
 
 export const validateTodoBulkUpdateData = (data: unknown) =>
   v.parse(TodoBulkUpdateSchema, data);
+
+const TodoBulkDestroySchema = v.object({
+  mode: v.literal("destroy"),
+  todos: v.array(v.object({ id: v.number() })),
+});
+
+export const validateTodoBulkDestroyData = (data: unknown) =>
+  v.parse(TodoBulkDestroySchema, data);
