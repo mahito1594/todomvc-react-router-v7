@@ -1,7 +1,8 @@
-import { data } from "react-router";
+import { data, redirect } from "react-router";
 import Header from "~/components/header";
 import TodoList from "~/components/todoList";
 import { todoRepository } from "~/data/todoRepository.client";
+import { validateTodoData } from "~/data/validate.client";
 import type { Route } from "./+types/index";
 
 export const meta: Route.MetaFunction = () => [
@@ -23,4 +24,17 @@ export default function Index({ loaderData }: Route.ComponentProps) {
 export const clientLoader = async () => {
   const todos = await todoRepository.getAll();
   return data({ todos });
+};
+
+export const clientAction = async ({ request }: Route.ClientActionArgs) => {
+  console.log(`${request.method} ${request.url}`);
+
+  if (request.method === "POST") {
+    const formData = await request.formData();
+    const { title, completed } = validateTodoData(formData);
+    await todoRepository.add(title, completed);
+    return redirect("/");
+  }
+
+  return data("Not Implemented", { status: 501 });
 };

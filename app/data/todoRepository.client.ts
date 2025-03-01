@@ -18,8 +18,8 @@ class FakeTodoRepository {
     return this.todos.find((todo) => todo.id === id);
   }
 
-  async add(title: string) {
-    const todo = { id: this.nextId, title, completed: false };
+  async add(title: string, completed = false) {
+    const todo = { id: this.nextId, title, completed };
     this.todos.push(todo);
     this.nextId++;
     return todo;
