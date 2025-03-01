@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useFetcher } from "react-router";
 
 export default function Header() {
@@ -10,11 +11,19 @@ export default function Header() {
 }
 
 const NewTodoItem = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const fetcher = useFetcher();
+  const isSubmitted = fetcher.state !== "idle";
+
+  useEffect(() => {
+    if (!isSubmitted) {
+      formRef.current?.reset();
+    }
+  }, [isSubmitted]);
 
   return (
     <div className="input-container">
-      <fetcher.Form action="/?index" method="POST">
+      <fetcher.Form action="/?index" method="POST" ref={formRef}>
         <input
           name="title"
           className="new-todo"
