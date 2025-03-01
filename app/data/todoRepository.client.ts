@@ -1,13 +1,9 @@
 class FakeTodoRepository {
-  private todos;
+  private todos: { id: number; title: string; completed: boolean }[];
   private nextId: number;
   constructor() {
-    this.todos = [
-      { id: 0, title: "Learn React", completed: true },
-      { id: 1, title: "Learn React Router", completed: true },
-      { id: 2, title: "Learn Remix", completed: false },
-    ];
-    this.nextId = 3;
+    this.todos = [];
+    this.nextId = 0;
   }
 
   async getAll() {
@@ -18,8 +14,8 @@ class FakeTodoRepository {
     return this.todos.find((todo) => todo.id === id);
   }
 
-  async add(title: string) {
-    const todo = { id: this.nextId, title, completed: false };
+  async add(title: string, completed = false) {
+    const todo = { id: this.nextId, title, completed };
     this.todos.push(todo);
     this.nextId++;
     return todo;
