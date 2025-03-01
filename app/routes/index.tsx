@@ -1,4 +1,5 @@
 import { data, redirect } from "react-router";
+import { ValiError } from "valibot";
 import Header from "~/components/header";
 import TodoList from "~/components/todoList";
 import { todoRepository } from "~/data/todoRepository.client";
@@ -27,15 +28,26 @@ export const clientLoader = async () => {
 };
 
 export const clientAction = async ({ request }: Route.ClientActionArgs) => {
-  console.log(`${request.method} ${request.url}`);
+  switch (request.method) {
+    case "POST":
+      return createActionHandler(request);
+    default:
+      return data("Not Implemented", { status: 501 });
+  }
+};
 
-  if (request.method === "POST") {
+const createActionHandler = async (request: Request) => {
+  try {
     const formData = await request.formData();
     formData.set("completed", "false"); // set default value
     const { title, completed } = validateTodoData(formData);
     await todoRepository.add(title, completed);
-    return redirect("/");
+  } catch (error) {
+    if (!(error instanceof ValiError)) {
+      throw new Error("Error occurs when creating new todo", { cause: error });
+    }
+    return data({ error }, { status: 400 });
   }
 
-  return data("Not Implemented", { status: 501 });
+  return redirect("/");
 };

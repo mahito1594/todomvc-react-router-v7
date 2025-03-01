@@ -12,6 +12,7 @@ export default function Header() {
 
 const NewTodoItem = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  // TODO:  show form validation error message
   const fetcher = useFetcher();
   const isSubmitted = fetcher.state !== "idle";
 
