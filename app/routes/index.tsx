@@ -31,6 +31,7 @@ export const clientAction = async ({ request }: Route.ClientActionArgs) => {
 
   if (request.method === "POST") {
     const formData = await request.formData();
+    formData.set("completed", "false"); // set default value
     const { title, completed } = validateTodoData(formData);
     await todoRepository.add(title, completed);
     return redirect("/");

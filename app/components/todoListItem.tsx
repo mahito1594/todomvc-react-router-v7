@@ -43,39 +43,37 @@ const EditableContent = ({
   onBlur: () => void;
 }) => {
   const fetcher = useFetcher();
-  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (ev) => {
-    if (ev.key !== "Enter") {
-      return;
-    }
-
-    const value = ev.currentTarget.value.trim();
-    if (value.length === 0) {
-      return;
-    }
-
-    fetcher.submit(
-      { title: value, completed: todo.completed },
-      { action: `/${todo.id}`, method: "PUT" },
-    );
-    onBlur();
-  };
 
   return (
     <div className="input-container">
-      <input
-        className="new-todo"
-        id="todo-input"
-        type="text"
-        required
-        // biome-ignore lint/a11y/noAutofocus: should be focused to edit todo
-        autoFocus
-        defaultValue={todo.title}
-        onKeyDown={handleKeyDown}
-        onBlur={onBlur}
-      />
-      <label className="visually-hidden" htmlFor="todo-input">
-        Edit todo item
-      </label>
+      <fetcher.Form
+        action={`/${todo.id}`}
+        method="PUT"
+        onSubmit={(ev) => {
+          fetcher.submit(ev.currentTarget.form);
+          onBlur();
+        }}
+      >
+        <input
+          type="hidden"
+          name="completed"
+          value={todo.completed.toString()}
+        />
+        <input
+          name="title"
+          className="new-todo"
+          id="todo-input"
+          type="text"
+          required
+          // biome-ignore lint/a11y/noAutofocus: should be focused to edit todo
+          autoFocus
+          defaultValue={todo.title}
+          onBlur={onBlur}
+        />
+        <label className="visually-hidden" htmlFor="todo-input">
+          Edit todo item
+        </label>
+      </fetcher.Form>
     </div>
   );
 };
