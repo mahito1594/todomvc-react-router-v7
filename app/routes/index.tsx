@@ -1,5 +1,6 @@
 import { data, redirect } from "react-router";
 import { ValiError } from "valibot";
+import Footer from "~/components/footer";
 import Header from "~/components/header";
 import TodoList from "~/components/todoList";
 import { todoRepository } from "~/data/todoRepository.client";
@@ -18,6 +19,7 @@ export default function Index({ loaderData }: Route.ComponentProps) {
     <>
       <Header />
       <TodoList todos={todos} />
+      <Footer todos={todos} />
     </>
   );
 }
