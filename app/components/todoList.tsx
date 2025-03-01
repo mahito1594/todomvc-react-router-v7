@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router";
+import { useFetcher, useSearchParams } from "react-router";
 import type { TodoListItemProps } from "./todoListItem";
 import TodoListItem from "./todoListItem";
 
@@ -22,6 +22,21 @@ export default function TodoList({ todos }: TodoListProps) {
     }
   });
 
+  const fetcher = useFetcher();
+  const toggleAll: React.ChangeEventHandler<HTMLInputElement> = (ev) => {
+    fetcher.submit(
+      {
+        mode: "update",
+        todos: visibleTodos.map((todo) => ({
+          ...todo,
+          completed: ev.currentTarget.checked,
+        })),
+      },
+      // encType: "application/x-www-form-urlencoded" does not work well, I don't know why
+      { action: "/bulk", method: "POST", encType: "application/json" },
+    );
+  };
+
   return (
     <main className="main">
       {visibleTodos.length > 0 && (
@@ -30,7 +45,8 @@ export default function TodoList({ todos }: TodoListProps) {
             className="toggle-all"
             type="checkbox"
             id="toggle-all"
-            onChange={() => void 0} // TODO
+            checked={visibleTodos.every((todo) => todo.completed)}
+            onChange={toggleAll}
           />
           <label htmlFor="toggle-all">Toggle All Input</label>
         </div>

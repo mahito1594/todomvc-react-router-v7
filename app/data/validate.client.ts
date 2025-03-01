@@ -12,3 +12,17 @@ export const validateTodoData = (form: FormData) => {
   const data = Object.fromEntries(form.entries());
   return v.parse(TodoSchema, data);
 };
+
+const TodoBulkUpdateSchema = v.object({
+  mode: v.literal("update"),
+  todos: v.array(
+    v.object({
+      id: v.number(),
+      title: v.string(),
+      completed: v.boolean(),
+    }),
+  ),
+});
+
+export const validateTodoBulkUpdateData = (data: unknown) =>
+  v.parse(TodoBulkUpdateSchema, data);
