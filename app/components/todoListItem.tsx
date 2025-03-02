@@ -104,7 +104,12 @@ const Content = ({
         onChange={toggleItem}
       />
       <p onDoubleClick={onDoubleClick}>{todo.title}</p>
-      <button type="button" className="destroy" onClick={deleteItem} />
+      <button
+        type="button"
+        className="destroy"
+        onClick={deleteItem}
+        aria-label="Delete"
+      />
     </>
   );
 };

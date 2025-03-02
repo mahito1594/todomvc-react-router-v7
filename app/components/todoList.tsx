@@ -21,15 +21,20 @@ export default function TodoList({ todos }: TodoListProps) {
         return true;
     }
   });
+  const isAllCompleted = visibleTodos.every((todo) => todo.completed);
 
   const fetcher = useFetcher();
-  const toggleAll: React.ChangeEventHandler<HTMLInputElement> = (ev) => {
+  const toggleAll: React.ChangeEventHandler<HTMLInputElement> = () => {
+    const toBeUpdated = isAllCompleted
+      ? visibleTodos
+      : visibleTodos.filter((todo) => !todo.completed);
+
     fetcher.submit(
       {
         mode: "update",
-        todos: visibleTodos.map((todo) => ({
+        todos: toBeUpdated.map((todo) => ({
           ...todo,
-          completed: ev.currentTarget.checked,
+          completed: !isAllCompleted,
         })),
       },
       // encType: "application/x-www-form-urlencoded" does not work well, I don't know why
@@ -45,7 +50,7 @@ export default function TodoList({ todos }: TodoListProps) {
             className="toggle-all"
             type="checkbox"
             id="toggle-all"
-            checked={visibleTodos.every((todo) => todo.completed)}
+            checked={isAllCompleted}
             onChange={toggleAll}
           />
           <label htmlFor="toggle-all">Toggle All Input</label>
