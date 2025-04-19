@@ -20,6 +20,8 @@ export default defineConfig({
         "app/routes.ts",
         "app/root.tsx",
       ],
+      reporter: ["text", "html", "json-summary", "json"],
+      reportOnFailure: true,
     },
   },
 });
