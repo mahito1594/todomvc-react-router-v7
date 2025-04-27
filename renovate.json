@@ -1,6 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["group:allNonMajor", "config:recommended"],
+  "extends": [
+    "group:allNonMajor",
+    "config:recommended",
+    "customManagers:biomeVersions"
+  ],
   "timezone": "Asia/Tokyo",
   "schedule": ["every weekend"],
   "packageRules": [
