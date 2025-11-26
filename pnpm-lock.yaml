@@ -34,7 +34,7 @@ importers:
         version: 1.0.5
       valibot:
         specifier: ^1.0.0
-        version: 1.1.0(typescript@5.9.3)
+        version: 1.2.0(typescript@5.9.3)
     devDependencies:
       '@biomejs/biome':
         specifier: 2.3.7
@@ -2895,8 +2895,8 @@ packages:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
 
-  valibot@1.1.0:
-    resolution: {integrity: sha512-Nk8lX30Qhu+9txPYTwM0cFlWLdPFsFr6LblzqIySfbZph9+BFsAHsNvHOymEviUepeIW6KFHzpX8TKhbptBXXw==}
+  valibot@1.2.0:
+    resolution: {integrity: sha512-mm1rxUsmOxzrwnX5arGS+U4T25RdvpPjPN4yR0u9pUBov9+zGVtO84tif1eY4r6zWxVxu3KzIyknJy3rxfRZZg==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -3977,7 +3977,7 @@ snapshots:
       react-router: 7.9.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       semver: 7.7.3
       tinyglobby: 0.2.15
-      valibot: 1.1.0(typescript@5.9.3)
+      valibot: 1.2.0(typescript@5.9.3)
       vite: 7.2.4(@types/node@22.19.1)(jiti@2.4.2)(lightningcss@1.29.1)
       vite-node: 3.2.4(@types/node@22.19.1)(jiti@2.4.2)(lightningcss@1.29.1)
     optionalDependencies:
@@ -5805,7 +5805,7 @@ snapshots:
 
   uuid@8.3.2: {}
 
-  valibot@1.1.0(typescript@5.9.3):
+  valibot@1.2.0(typescript@5.9.3):
     optionalDependencies:
       typescript: 5.9.3
 
