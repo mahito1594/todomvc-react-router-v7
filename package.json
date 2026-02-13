@@ -25,7 +25,7 @@
     "valibot": "^1.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.14",
+    "@biomejs/biome": "2.3.15",
     "@commitlint/cli": "^20.0.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@commitlint/types": "^20.0.0",
@@ -46,7 +46,7 @@
     "vite-tsconfig-paths": "^6.0.0",
     "vitest": "^4.0.0"
   },
-  "packageManager": "pnpm@10.29.1+sha512.48dae233635a645768a3028d19545cacc1688639eeb1f3734e42d6d6b971afbf22aa1ac9af52a173d9c3a20c15857cfa400f19994d79a2f626fcc73fccda9bbc",
+  "packageManager": "pnpm@10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@biomejs/biome",
