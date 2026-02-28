@@ -12,6 +12,7 @@ const initializeLocalStorage = (
 const createActionArgs = (request: Request) => ({
   request,
   params: {},
+  unstable_pattern: "/bulk",
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   context: {} as any,
   serverAction: async () => undefined,
