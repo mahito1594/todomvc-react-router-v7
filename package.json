@@ -52,6 +52,11 @@
       "@biomejs/biome",
       "esbuild",
       "lefthook"
-    ]
+    ],
+    "overrides": {
+      "seroval@<=1.4.0": ">=1.4.1",
+      "seroval@<1.4.1": ">=1.4.1",
+      "rollup@>=4.0.0 <4.59.0": ">=4.59.0"
+    }
   }
 }

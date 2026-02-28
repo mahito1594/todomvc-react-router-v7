@@ -68,9 +68,7 @@ describe("TodoListItem component", () => {
 
   it("should render an editor when double clicked", async () => {
     const user = userEvent.setup();
-    const { rerender } = render(
-      <TodoListItem id={0} title="Learn React" completed={false} />,
-    );
+    render(<TodoListItem id={0} title="Learn React" completed={false} />);
     const title = screen.getByText("Learn React");
 
     await user.dblClick(title);

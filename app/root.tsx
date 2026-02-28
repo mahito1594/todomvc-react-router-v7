@@ -1,10 +1,10 @@
 import {
+  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
 } from "react-router";
 import styles from "todomvc-app-css/index.css?url";
 import baseStyles from "todomvc-common/base.css?url";

@@ -5,10 +5,6 @@ export type FooterProps = {
 };
 
 export default function Footer({ todos }: FooterProps) {
-  if (todos.length === 0) {
-    return null;
-  }
-
   const activeTodos = todos.filter((todo) => !todo.completed);
   const completedTodos = todos.filter((todo) => todo.completed);
 
@@ -25,6 +21,10 @@ export default function Footer({ todos }: FooterProps) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const filterMode = searchParams.get("filter") || "all";
+
+  if (todos.length === 0) {
+    return null;
+  }
 
   return (
     <footer className="footer">

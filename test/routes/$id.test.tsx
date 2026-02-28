@@ -12,7 +12,8 @@ const initializeLocalStorage = (
 const createActionArgs = (request: Request, params: { id: string }) => ({
   request,
   params,
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  unstable_pattern: "/:id",
+  // biome-ignore lint/suspicious/noExplicitAny: context type not used in tests
   context: {} as any,
   serverAction: async () => undefined,
 });
@@ -38,9 +39,9 @@ describe("Client Action", () => {
     const args = createActionArgs(request, { id: "0" });
     const response = await clientAction(args);
 
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.status).toBe(302);
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.headers.get("Location")).toBe("/");
 
     const updatedTodos = JSON.parse(
@@ -70,7 +71,7 @@ describe("Client Action", () => {
     const args = createActionArgs(request, { id: "0" });
     const response = await clientAction(args);
 
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.data).toEqual({
       todo: {
         id: 0,
