@@ -13,7 +13,7 @@ const createActionArgs = (request: Request) => ({
   request,
   params: {},
   unstable_pattern: "/bulk",
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: context type not used in tests
   context: {} as any,
   serverAction: async () => undefined,
 });
@@ -45,9 +45,9 @@ describe("Bulk Api", () => {
     const args = createActionArgs(request);
     const response = await clientAction(args);
 
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.status).toBe(302);
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.headers.get("Location")).toBe("/");
 
     const updatedTodos = JSON.parse(
@@ -81,9 +81,9 @@ describe("Bulk Api", () => {
     const args = createActionArgs(request);
     const response = await clientAction(args);
 
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.status).toBe(302);
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.headers.get("Location")).toBe("/");
 
     const updatedTodos = JSON.parse(

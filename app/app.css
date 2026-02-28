@@ -68,8 +68,11 @@ but useful for people who use screen readers */
 }
 
 .toggle-all {
+  /* biome-ignore lint/complexity/noImportantStyles: overrides todomvc-app-css defaults */
   width: 40px !important;
+  /* biome-ignore lint/complexity/noImportantStyles: overrides todomvc-app-css defaults */
   height: 60px !important;
+  /* biome-ignore lint/complexity/noImportantStyles: overrides todomvc-app-css defaults */
   right: auto !important;
 }
 

@@ -13,7 +13,7 @@ const createActionArgs = (request: Request) => ({
   request,
   params: {},
   unstable_pattern: "/",
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: context type not used in tests
   context: {} as any,
   serverAction: async () => undefined,
 });
@@ -51,9 +51,9 @@ describe("Loader / Action", () => {
     const args = createActionArgs(request);
     const response = await clientAction(args);
 
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.status).toBe(302);
-    // @ts-ignore
+    // @ts-expect-error
     expect(response.headers.get("Location")).toBe("/");
 
     const newTodos = JSON.parse(
@@ -76,7 +76,7 @@ describe("Loader / Action", () => {
     const args = createActionArgs(request);
     const result = await clientAction(args);
 
-    // @ts-ignore
+    // @ts-expect-error
     expect(result.init).toEqual({ status: 400 });
   });
 });
