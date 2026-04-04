@@ -1,5 +1,5 @@
 import type { Config } from "@react-router/dev/config";
-import { BASENAME } from "vite.config";
+import { BASENAME } from "./vite.config";
 
 export default {
   // enable SPA mode
