@@ -13,6 +13,7 @@ const createActionArgs = (request: Request, params: { id: string }) => ({
   request,
   params,
   unstable_pattern: "/:id",
+  unstable_url: new URL(request.url),
   // biome-ignore lint/suspicious/noExplicitAny: context type not used in tests
   context: {} as any,
   serverAction: async () => undefined,
