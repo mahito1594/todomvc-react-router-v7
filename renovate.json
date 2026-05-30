@@ -7,7 +7,12 @@
   ],
   "timezone": "Asia/Tokyo",
   "schedule": ["every weekend"],
+  "internalChecksFilter": "strict",
   "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "minimumReleaseAge": "1 day"
+    },
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
